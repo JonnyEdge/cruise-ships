@@ -15,5 +15,8 @@
     "eslint-plugin-babel": "^5.2.0",
     "eslint-plugin-import": "^2.14.0",
     "jest": "^23.6.0"
+  },
+  "dependencies": {
+    "jest-cli": "^23.6.0"
   }
 }
