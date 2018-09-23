@@ -7,9 +7,17 @@ describe('Ship', () => {
     expect(ship).toBeInstanceOf(Object);
   });
 
-  it('Has a startPort property', () => {
+  it('Has a currentPort property', () => {
     ship = new Ship('Dover');
 
-    expect(ship.startPort).toEqual('Dover')
+    expect(ship.currentPort).toEqual('Dover')
+  });
+
+  it('Can set sail', () => {
+    ship = new Ship('Dover');
+
+    ship.setSail();
+
+    expect(ship.currentPort).toBeFalsy();
   })
 });
