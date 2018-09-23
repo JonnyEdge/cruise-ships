@@ -3,33 +3,39 @@ const Port = require('../src/ports');
 const Itinerary = require('../src/itinerary');
 
 describe('Ship', () => {
-  it('Creates a Ship object', () => {
-    const port = new Port('Dover');
-    const itinerary = new Itinerary([port]);
-    const ship = new Ship(itinerary);
+  describe('Set up with ports and itinerary', () => {
+    let dover
+    let calais
+    let itinerary
+    let ship
 
-    expect(ship).toBeInstanceOf(Object);
+    beforeEach(() => {
+      dover = new Port('Dover')
+      calais = new Port('Calais')
+      itinerary = new Itinerary([dover, calais])
+      ship = new Ship(itinerary)
+    })
+    
+    it('Creates a Ship object', () => { 
+      expect(ship).toBeInstanceOf(Object);
+    });
+  
+    it('Has a currentPort property', () => {
+      expect(ship.currentPort).toEqual(dover);
+    });
+  
+    it('Can set sail', () => {
+      ship.setSail();
+  
+      expect(ship.currentPort).toBeFalsy();
+      expect(dover.ships).not.toContain(ship);
+    });
+
+    it('Gets added to port on instantiation', () => {
+      expect(dover.ships).toContain(ship);
+    });
   });
-
-  it('Has a currentPort property', () => {
-    const port = new Port('Dover');
-    const itinerary = new Itinerary([port]);
-    const ship = new Ship(itinerary);
-
-    expect(ship.currentPort).toEqual(port);
-  });
-
-  it('Can set sail', () => {
-    const port = new Port('Dover');
-    const itinerary = new Itinerary([port]);
-    const ship = new Ship(itinerary);
-
-    ship.setSail();
-
-    expect(ship.currentPort).toBeFalsy();
-    expect(port.ships).not.toContain(ship);
-  });
-
+  
   it('Can dock at a different port', () => {
     const dover = new Port('Dover');
     const calais = new Port('Calais');
@@ -42,12 +48,4 @@ describe('Ship', () => {
     expect(ship.currentPort).toBe(calais);
     expect(calais.ships).toContain(ship);
   });
-
-  it('Gets added to port on instantiation', () => {
-    const dover = new Port('Dover')
-    const itinerary = new Itinerary([dover])
-    const ship = new Ship (itinerary)
-
-    expect(dover.ships).toContain(ship);
-  })
 });
