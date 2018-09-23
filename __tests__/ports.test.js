@@ -2,7 +2,7 @@ const Port = require('../src/ports');
 
 describe('Port', () => {
   describe('Set up with port', () => {
-    let port
+    let port;
 
     beforeEach(() => {
       port = new Port('Dover')
@@ -17,7 +17,7 @@ describe('Port', () => {
     });
   
     it('Can add a ship', () => {
-      const titanic = {};
+      const titanic = jest.fn();
   
       port.addShip(titanic);
   
@@ -25,8 +25,8 @@ describe('Port', () => {
     });
   
     it('Can remove a ship', () => {
-      const titanic = {};
-      const titanic2 = {};
+      const titanic = jest.fn();
+      const titanic2 = jest.fn();
   
       port.addShip(titanic);
       port.addShip(titanic2);

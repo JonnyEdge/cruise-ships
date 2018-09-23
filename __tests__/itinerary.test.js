@@ -8,7 +8,7 @@ describe('Itinerary', () => {
   });
 
   it('Has a ports property', () => {
-    const itinerary = new Itinerary();
+    const itinerary = jest.fn();
 
     expect(itinerary.ports).toEqual();
   });

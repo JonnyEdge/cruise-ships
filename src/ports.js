@@ -4,15 +4,16 @@ function Port(name) {
 }
 
 Port.prototype.addShip = function addShip(ship) {
-  const shipsIndex = this.ships.indexOf();
-  this.ships[shipsIndex + 1] = ship;
+  if (this.ships.length === 0) {
+    this.ships[0] = ship;
+  } else {
+    this.ships[this.ships.length] = ship;
+  }
 };
 
 Port.prototype.removeShip = function removeShip(ship) {
-  const shipsIndex = this.ships.indexOf();
-  if (this.ships[shipsIndex] === ship) {
-    this.ships.splice(shipsIndex, 1)
-  };
+  const shipLocation = this.ships.indexOf(ship);
+  this.ships.splice((shipLocation), 1);
 };
 
 module.exports = Port;
