@@ -1,4 +1,5 @@
 const Ship = require ('../src/ships');
+const Port = require ('../src/ports');
 
 describe('Ship', () => {
   it('Creates a Ship object', () => {
@@ -8,16 +9,28 @@ describe('Ship', () => {
   });
 
   it('Has a currentPort property', () => {
-    ship = new Ship('Dover');
+    port = new Port('Dover')
+    ship = new Ship(port);
 
-    expect(ship.currentPort).toEqual('Dover')
+    expect(ship.currentPort).toEqual(port)
   });
 
   it('Can set sail', () => {
-    ship = new Ship('Dover');
+    port = new Port('Dover')
+    ship = new Ship(port);
 
     ship.setSail();
 
     expect(ship.currentPort).toBeFalsy();
+  });
+
+  it('Can dock at a different port', () => {
+    dover = new Port('Dover');
+    calais = new Port('Calais')
+    ship = new Ship(dover)
+
+    ship.dock(calais)
+
+    expect(ship.currentPort).toEqual(calais)
   })
 });
