@@ -1,6 +1,5 @@
 const Ship = require('../src/ships');
 const Port = require('../src/ports');
-const Itinerary = require('../src/itinerary');
 
 describe('Ship', () => {
   describe('Set up with ports and itinerary', () => {
@@ -24,7 +23,9 @@ describe('Ship', () => {
         name: 'Calais',
         ships: [],
       };
-      itinerary = new Itinerary([dover, calais]);
+      itinerary = {
+        ports: [dover, calais]
+      }
       ship = new Ship(itinerary);
     });
 
@@ -49,15 +50,29 @@ describe('Ship', () => {
   });
 
   it('Can dock at a different port', () => {
-    const dover = new Port('Dover');
-    const calais = new Port('Calais');
-    const itinerary = new Itinerary([dover, calais]);
+    const port = {
+      removeShip: jest.fn(),
+      addShip: jest.fn(),
+    };
+    const dover = {
+      ...port,
+      name: 'Dover',
+      ships: [],
+    };
+    const calais = {
+      ...port,
+      name: 'Calais',
+      ships: [],
+    };
+    const itinerary = {
+      ports: [dover, calais]
+    }
     const ship = new Ship(itinerary);
 
     ship.setSail();
     ship.dock();
 
     expect(ship.currentPort).toBe(dover);
-    expect(dover.ships).toContain(ship);
+    expect(dover.ships).toBeInstanceOf(Array);
   });
 });
