@@ -8,7 +8,7 @@ function Ship(itinerary) {
 
 Ship.prototype.setSail = function setSail() {
   if (this.currentPort !== null) {
-    this.currentPort.removeShip();
+    this.currentPort.removeShip(this);
     this.currentPort = null;
   } else {
     this.currentPort = null;

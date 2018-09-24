@@ -1,5 +1,4 @@
 const Ship = require('../src/ships');
-const Port = require('../src/ports');
 
 describe('Ship', () => {
   describe('Set up with ports and itinerary', () => {
@@ -41,7 +40,7 @@ describe('Ship', () => {
       ship.setSail();
 
       expect(ship.currentPort).toBeFalsy();
-      expect(dover.removeShip).toHaveBeenCalledWith();
+      expect(dover.removeShip).toHaveBeenCalledWith(ship);
     });
 
     it('Gets added to port on instantiation', () => {
