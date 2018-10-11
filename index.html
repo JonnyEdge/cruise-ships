@@ -5,16 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Cruise Ships GUI</title>
-  <!-- <link rel="stylesheet" type="text/css" href="css/normalize.css"> -->
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
   <div id="viewport">
+    <div id="ports">
+
+    </div>
   </div>
   <script src="src/controller.js"></script>
   <script src="src/ports.js"></script>
+  <script src="src/itinerary.js"></script>
   <script> 
-    let controller = new Controller() 
+    const controller = new Controller()
+    const itinerary = new Itinerary([
+      new Port('Liverpool'),
+      new Port('Shanghai'),
+      new Port('Singapore'),
+      new Port('Rotterdam'),
+    ])
+    controller.renderPorts(itinerary.ports)  
   </script>
 </body>
 </html>
