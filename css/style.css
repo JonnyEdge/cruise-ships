@@ -29,3 +29,49 @@ body {
   height: 32px;
   background-image: url('../images/port.png'); 
 }
+
+#ship {
+  background-image: url('../images/ship.png');
+  width: 128px;
+  height: 64px;
+  position: absolute;
+}
+
+#sailbutton > button {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  background-color: green;
+  color: white;
+  border: 0;
+  padding: 10px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.ripple {
+  display:block;
+  float:left;
+  text-align:center;
+  color:#fff;
+  text-decoration:none;
+  position:relative;
+  overflow:hidden;
+  transition: all 0.2s ease;
+  z-index:0;
+}
+
+.ink {
+  display: block;
+  position: absolute;
+  background:rgba(255, 255, 255, 0.3);
+  border-radius: 100%;
+  transform:scale(0);
+}
+
+.animate {
+  animation:ripple 0.65s linear;
+}
+
+@keyframes ripple {
+    100% {opacity: 0; transform: scale(2.5);}
+}

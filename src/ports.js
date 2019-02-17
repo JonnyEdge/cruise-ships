@@ -5,14 +5,14 @@
   }
 
   Port.prototype.addShip = function addShip(ship) {
-    this.ships.push(ship)
+    this.ships.push(ship);
     /* Overcomplicating the issue
-    
+
     if (this.ships.length === 0) {
       this.ships[0] = ship;
     } else {
       this.ships[this.ships.length] = ship;
-    }; 
+    };
     */
   };
 
