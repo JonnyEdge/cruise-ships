@@ -8,23 +8,25 @@
   }
 
   Ship.prototype.setSail = function setSail() {
-    if (this.currentPort !== null) {
-      this.currentPort.removeShip(this);
-      this.currentPort = null;
-    } else {
-      this.currentPort = null;
+    const itinerary = this.itinerary;
+    const currentPortIndex = itinerary.ports.indexOf(this.currentPort);
+
+    if (currentPortIndex === (itinerary.ports.length - 1)) {
+      throw new Error('End of itinerary reached');
     }
+
     this.previousPort = this.currentPort;
+    this.currentPort = null;
+    this.previousPort.removeShip(this);
   };
 
   Ship.prototype.dock = function dock() {
     const itinerary = this.itinerary;
-    const previousIndex = itinerary.ports.indexOf(this.previousPort);
+    const previousPortIndex = itinerary.ports.indexOf(this.previousPort);
 
-    this.currentPort = itinerary.ports[previousIndex + 1];
+    this.currentPort = itinerary.ports[previousPortIndex + 1];
     this.currentPort.addShip(this);
   };
-
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = Ship;
   } else {

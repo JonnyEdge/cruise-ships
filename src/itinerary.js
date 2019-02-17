@@ -8,5 +8,4 @@
   } else {
     window.Itinerary = Itinerary;
   }
-
 }());
